@@ -1,0 +1,17 @@
+on property:ro.build.product=t6wl
+    import init.target.rc.cdma
+
+on property:ro.build.product=t6whl
+    import init.target.rc.cdma
+
+on property:ro.build.product=t6
+    import init.target.rc.gsm
+
+on property:ro.build.product=t6dug
+    import init.target.rc.gsm
+
+on property:ro.build.product=t6dwg
+    import init.target.rc.gsm
+
+on property:ro.build.product=t6tl
+    import init.target.rc.gsm

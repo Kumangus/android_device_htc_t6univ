@@ -27,11 +27,14 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
-LOCAL_PATH := device/htc/t6-common
+LOCAL_PATH := device/htc/t6univ
 
-TARGET_SPECIFIC_HEADER_PATH += device/htc/t6-common/include
+TARGET_SPECIFIC_HEADER_PATH += device/htc/t6univ/include
 
 USE_CLANG_PLATFORM_BUILD := true
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := t6,t6ul,t6wl,t6vzw,t6whl,t6spr,t6dug,t6dwg,t6tl
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
@@ -82,11 +85,14 @@ HAVE_ADRENO_SOURCE := false
 # Recovery
 BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_DEVICE_DIRS += device/htc/t6-common
+TARGET_RECOVERY_DEVICE_DIRS += device/htc/t6univ
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)/releasetools
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -94,10 +100,15 @@ BOARD_PROVIDES_LIBRIL := true
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += device/htc/t6-common/sepolicy
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+
+# Vendor Init
+TARGET_UNIFIED_DEVICE := true
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_t6univ.cpp
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true

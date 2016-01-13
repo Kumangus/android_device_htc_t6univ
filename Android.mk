@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter t6 t6spr t6vzw,$(TARGET_DEVICE)),)
+ifneq ($(filter t6univ,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
@@ -33,17 +33,15 @@ FIRMWARE_MDM_IMAGES := \
     sbl1.mbn \
     sbl2.mbn
 
-ifneq ($(filter t6,$(TARGET_DEVICE)),)
+# GSM
 FIRMWARE_MDM_IMAGES += \
     htc61.mbn htc62.mbn htc63.mbn htc64.mbn htc65.mbn \
     htcnvbak.mbn htcrcust.mbn htcsmem.mbn \
     sbl1_82.mbn sbl1_92.mbn sbl1_96.mbn
-endif
 
-ifneq ($(filter t6spr t6vzw,$(TARGET_DEVICE)),)
+# CDMA
 FIRMWARE_MDM_IMAGES += \
     htccnv.mbn htcnvmfg.mbn htcuserd.mbn
-endif
 
 FIRMWARE_MDM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(FIRMWARE_MDM_IMAGES)))
 $(FIRMWARE_MDM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)

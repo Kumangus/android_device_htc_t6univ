@@ -110,9 +110,9 @@ PRODUCT_PACKAGES += \
     com.android.nfc_extras
 
 ifeq ($(TARGET_BUILD_VARIANT),user)
-    NFCEE_ACCESS_PATH := device/htc/t6-common/configs/nfcee_access.xml
+    NFCEE_ACCESS_PATH := device/htc/t6univ/configs/nfcee_access.xml
 else
-    NFCEE_ACCESS_PATH := device/htc/t6-common/configs/nfcee_access_debug.xml
+    NFCEE_ACCESS_PATH := device/htc/t6univ/configs/nfcee_access_debug.xml
 endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
@@ -132,11 +132,17 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     init.qcom.usb.rc \
     init.target.rc \
+    init.target.cdma \
+    init.target.gsm \
     ueventd.qcom.rc
 
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
+
+# Variant linking script
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/releasetools/variant_script.sh:install/bin/variant_script.sh
 
 # WiFi
 PRODUCT_PACKAGES += \
